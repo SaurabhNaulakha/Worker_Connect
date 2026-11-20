@@ -23,7 +23,14 @@ const app = express();
 
 // --- Security & core middleware ---
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL || "*", credentials: true }));
+//app.use(cors({ origin: process.env.CLIENT_URL || "*", credentials: true }));
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://worker-connect-iota.vercel.app"
+  ],
+  credentials: true
+}));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
